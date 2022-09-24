@@ -1,10 +1,9 @@
-import tweepy
-import tweetpyConfig   
+from tweepy import Client
+import tweetpyConfig
 
-client = tweepy.Client(bearer_token=tweetpyConfig.BEARER_TOKEN)
+client = Client(bearer_token=tweetpyConfig.BEARER_TOKEN)
 
-query = 'covid -is:retweet'
-
-response = client.search_recent_tweets(query=query, max_results=10)
-
-print(response)
+def search():
+    query = 'covid -is:retweet'
+    response = client.search_recent_tweets(query=query, max_results=10)
+    print(response)
