@@ -13,7 +13,7 @@ def page_not_found(error):
 if __name__ == '__main__':
     app.config.from_object(config['development'])
     #BLueprints
-
+    
     #error handler
     app.register_error_handler(404, page_not_found)
     app.run()

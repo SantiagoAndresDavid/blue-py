@@ -1,7 +1,7 @@
 import tweepy
-import tweetpyConfig   
+import settings   
 
-client = tweepy.Client(bearer_token=tweetpyConfig.BEARER_TOKEN)
+client = tweepy.Client(bearer_token=settings.BEARER_TOKEN)
 
 query = 'covid -is:retweet'
 
