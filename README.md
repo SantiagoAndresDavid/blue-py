@@ -3,8 +3,8 @@
 | IDENTIFICACIÓN | |
 | :- | :- |
 | subject | simulation and models |
-| Professor |  |
-| Contributors | Santiago Andres David |
+| Professor | Adith Bismarck Pérez Orozco  |
+| Contributors | Santiago Andres David, Ana Sofia Patiño |
 
 Project focussed on twitter data management. Blue-py is a college project for the simulation statistic using tweets information from the tweetpy library
 
@@ -82,6 +82,6 @@ py -m pip install requests
 ```
 <!--Ejecución de la app-->
 
-
+##
 
 <!--Ejecución de la app con docker-->
