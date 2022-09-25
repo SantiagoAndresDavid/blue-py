@@ -52,9 +52,21 @@ python3 -m pip install --user virtualenv
 ```sh
 py -m pip install --user virtualenv
 ```
+Create a virtual environment
 
-Creating a virtual environment
 
+- Ubuntu/MacOS
+
+```sh
+python3 -m venv
+```
+
+- Windows
+
+```sh
+virtualenv myenv
+```
+Activate a virtual environment
 - Ubuntu/MacOS
 
 ```sh
@@ -80,8 +92,10 @@ python3 -m pip install requests
 ```sh
 py -m pip install requests
 ```
+
 <!--Ejecución de la app-->
 
-##
-
+## Run app 
+---
+activate virtal enviorment and execute app.py 
 <!--Ejecución de la app con docker-->

@@ -9,10 +9,6 @@ BEARER_TOKEN = getenv('BEARER_TOKEN')
 ACCESS_TOKEN = getenv('ACCESS_TOKEN')
 ACCESS_TOKEN_SECRET = getenv('ACCESS_TOKEN_SECRET')
 
-
-
-
-
 class DevelopmentConfig():
     DEBUG = True
 
