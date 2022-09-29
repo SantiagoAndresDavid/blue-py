@@ -8,6 +8,9 @@
 
 Project focussed on twitter data management. Blue-py is a college project for the simulation statistic using tweets information from the tweetpy library
 
+## information for the professor 
+[documents](https://drive.google.com/drive/folders/1xU7A-c-VGjO3e8Xif1cFoIpYiZ_ZvUVR?usp=sharing)
+
 <!--Por qué es el proyecto-->
 ## Why?
 

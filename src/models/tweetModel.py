@@ -1,3 +1,5 @@
+import tweepy
+import settings
 
 class TweetModel():
     @classmethod
