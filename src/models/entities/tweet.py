@@ -3,7 +3,7 @@ from utils.db import db
 
 class Tweet(db.Model):
         
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.String(50), primary_key=True, unique=True)
     author_id = db.Column(db.String(200), nullable=False)
     text = db.Column(db.String(200), nullable=False)
 

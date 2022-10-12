@@ -2,6 +2,7 @@ from flask import Blueprint,jsonify,request
 from models.entities.tweet import Tweet
 from models.tweet_model import Tweet_model
 from utils.db import db
+from utils.tweetpy import api
 
 #models
 from models import tweet_model
@@ -18,15 +19,13 @@ def get_cars():
 
 
 
-@main.route('/add', methods=['POST'])
+@main.route('/add')
 def add_car():
     try:
-        id = request.json['id']
-        author_id = request.json['author_id']
-        text = request.json['text']
-        tweet = Tweet(id,author_id,text)
-        affected_rows = Tweet_model.add_tweet(tweet)
-
+        tweets = api.search_tweets(q="realdonaldtrump", count=1000, lang="en")
+        for tweet in tweets:
+            print(tweet.id)
+        affected_rows = Tweet_model.add_tweet(tweets)
         if affected_rows == True:
             return jsonify({'message': 'se guardo con exito'})
         else:
