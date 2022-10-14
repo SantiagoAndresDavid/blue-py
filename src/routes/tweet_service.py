@@ -20,7 +20,7 @@ def get_cars():
 
 
 
-@main.route('/add')
+@main.route('/search_tweets')
 def add_car():
     try:
         tweets = api.search_tweets(
