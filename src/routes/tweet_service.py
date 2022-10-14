@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint,jsonify,request
 from models.entities.tweet import Tweet
 from models.tweet_model import Tweet_model
@@ -22,9 +23,10 @@ def get_cars():
 @main.route('/add')
 def add_car():
     try:
-        tweets = api.search_tweets(q="realdonaldtrump", count=1000, lang="en")
+        tweets = api.search_tweets(
+            q="f1", count=1000, lang="en")  # search_tweets
         for tweet in tweets:
-            print(tweet.id)
+            print(tweet.user.name)
         affected_rows = Tweet_model.add_tweet(tweets)
         if affected_rows == True:
             return jsonify({'message': 'se guardo con exito'})

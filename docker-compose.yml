@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  docker-mysql:
+    container_name: bluepy-mysql
+    image: mysql:8.0.29
+    restart: always
+    networks:
+      - bluepy
+    volumes:
+      - /home/santiago/containers/volumes/mysql/bluepy:/var/lib/mysql:delegated
+    environment:
+      MYSQL_DATABASE: bluepydb
+      MYSQL_USER: bluepy
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3307:3306
+networks:
+  bluepy:
+    external: true

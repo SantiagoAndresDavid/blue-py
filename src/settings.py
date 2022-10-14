@@ -10,11 +10,11 @@ BEARER_TOKEN = getenv('BEARER_TOKEN')
 ACCESS_TOKEN = getenv('ACCESS_TOKEN')
 ACCESS_TOKEN_SECRET = getenv('ACCESS_TOKEN_SECRET')
 
-user = getenv('PGSQL_USER')
-password = getenv('PGSQL_PASSWORD')
-host = getenv('PGSQL_HOST')
-database = getenv('PGSQL_DATABASE')
-
+user = getenv('MYSQL_USER')
+password = getenv('MYSQL_PASSWORD')
+host = getenv('MYSQL_HOST')
+database = getenv('MYSQL_DATABASE')
+port = getenv('MYSQL_PORT')
 
 
 class DevelopmentConfig():
@@ -26,5 +26,5 @@ config = {
 }
 
 
-DATABASE_CONNECTION_URI = f'mysql://{user}:{password}@{host}/{database}'
+DATABASE_CONNECTION_URI = f'mysql://{user}:{password}@{host}:{port}/{database}?charset=utf8mb4'
 print(DATABASE_CONNECTION_URI)
