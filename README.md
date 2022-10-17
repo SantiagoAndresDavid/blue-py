@@ -19,8 +19,8 @@ This project is to learn threads and simulations
 <!--Instalación del entorno de dev-->
 ## Setup dev-Embiroment
 
-[install python 3](https://www.python.org/downloads/)
-
+[![Python](https://img.shields.io/static/v1?label=Python&message=3.8.10&style=for-the-badge&logo=python&labelColor=white&color=blue)](https://www.python.org/downloads/release/python-3810/)
+[![Mysql](https://img.shields.io/static/v1?label=Mysql&message=8.0.30&style=for-the-badge&logo=mysql&labelColor=white&color=blue)](https://downloads.mysql.com/archives/community/)
 ---
 
 Install pip

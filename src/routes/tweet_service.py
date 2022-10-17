@@ -22,8 +22,9 @@ def get_main():
 def get_tweets():
     try:
         tweets = api.search_tweets(
-            q=request.json['topic'], count=1000, lang="es")  # search_tweets
+            q=request.json['topic'], count=100, lang="es")  # search_tweets
         affected_rows = Tweet_model.add_tweet(tweets)
+        
         if affected_rows == True:
             return jsonify({'message': 'se guardo con exito'})
         else:
@@ -44,3 +45,12 @@ def get_follower_list():
 
 
 ## search list of followers
+@main.route('/search-list-of-following', methods=['POST'])
+def get_following_list():
+    try:
+        user = api.get_user(screen_name=request.json['user'])
+        for follower in user.friends:
+            print(follower.name)
+        return jsonify({'message': 'se encontro'})
+    except Exception as ex:
+        return jsonify({'message': str(ex)}), 500

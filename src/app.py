@@ -13,7 +13,7 @@ print(DATABASE_CONNECTION_URI)
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_CONNECTION_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.register_error_handler(404, page_not_found)
-app.register_blueprint(tweet_service.main, url_prefix='/api')
+app.register_blueprint(tweet_service.main, url_prefix='/BluePy')
 SQLAlchemy(app)
 
 
