@@ -100,5 +100,5 @@ py -m pip install requests
 
 ## Run app 
 ---
-activate virtal enviorment and execute app.py 
+activate virtal enviorment and execute index.py 
 <!--Ejecución de la app con docker-->
