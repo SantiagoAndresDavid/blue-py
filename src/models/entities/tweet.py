@@ -20,3 +20,4 @@ class Tweet(db.Model):
         self.author_name = author_name
         self.created_date = created_date
         self.topic = topic
+
