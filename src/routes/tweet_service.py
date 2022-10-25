@@ -27,14 +27,9 @@ def save_tweets():
     try:
         tweets = api.search_tweets(
             q=request.json['topic'] + " " + request.json['config'], count=100, lang="es ", tweet_mode='extended')  # search_tweets
-        affected_rows = TweetRepository.add_tweet(
+        tweets_save = TweetRepository.add_tweet(
             tweets, request.json['topic'])
-
-        if affected_rows == True:
-            # retornar la lista de tweets guardados en la base de datos
-            return jsonify({'message': 'se guardo con exito'})
-        else:
-            return jsonify({'message': str(ex)}), 500
+        return jsonify(tweets_save)
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
 

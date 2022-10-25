@@ -9,12 +9,14 @@ class TweetRepository():
     @classmethod
     def add_tweet(self, tweets, topic):
         try:
+            tweets_saved = []
             for tweet in tweets:
                 newTweet = Tweet(tweet.id, tweet.full_text, tweet.user.id_str,
                                  tweet.user.name, tweet.created_at, topic)
                 db.session.add(newTweet)
                 db.session.commit()
-            return True
+                tweets_saved.append(TweetRepository.to_JSON(newTweet))
+            return tweets_saved
         except Exception as e:
             print(e)
             return Exception(e)
