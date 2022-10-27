@@ -1,6 +1,6 @@
 from requests import session
 import tweepy
-from models.entities.tweet import Tweet
+from models.tweet import Tweet
 from utils.db import db
 import re
 
@@ -12,7 +12,7 @@ class TweetRepository():
             tweets_saved = []
             for tweet in tweets:
                 newTweet = Tweet(tweet.id, tweet.full_text, tweet.user.id_str,
-                                 tweet.user.name, tweet.created_at, topic)
+                                 tweet.user.name, tweet.created_at, topic,tweet.source)
                 db.session.add(newTweet)
                 db.session.commit()
                 tweets_saved.append(TweetRepository.to_JSON(newTweet))
@@ -51,5 +51,6 @@ class TweetRepository():
             'author_id': tweet.author_id,
             'author_name': tweet.author_name,
             'created_date': tweet.created_date,
-            'topic': tweet.topic
+            'topic': tweet.topic,
+            'source': tweet.source
         }

@@ -29,7 +29,7 @@ def save_tweets():
             q=request.json['topic'] + " " + request.json['config'], count=100, lang="es ", tweet_mode='extended')  # search_tweets
         tweets_save = TweetRepository.add_tweet(
             tweets, request.json['topic'])
-        return jsonify(tweets_save)
+        return jsonify(tweets_save)  ##graficar dede donde fue tweeteado
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
 
