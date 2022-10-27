@@ -1,15 +1,17 @@
-from crypt import methods
-from json import dump
+
 from flask import Blueprint, jsonify, request
 from importlib_metadata import NullFinder
 from data.tweetRepository import TweetRepository
+from models.tweet import Tweet
+from services.tweetService import TweetService
 from utils.db import db
 from utils.tweetpy import api
 
 
 # models
 from data import tweetRepository
-main = Blueprint('tweet_service_blueprint', __name__)
+
+main = Blueprint('tweet_Routes_blueprint', __name__)
 
 
 @main.route('/')
@@ -20,15 +22,10 @@ def get_main():
         return jsonify({'message': str(ex)}), 500
 
 # search_tweets about topic
-
-
 @main.route('/save-tweets', methods=['POST'])
 def save_tweets():
     try:
-        tweets = api.search_tweets(
-            q=request.json['topic'] + " " + request.json['config'], count=100, lang="es ", tweet_mode='extended')  # search_tweets
-        tweets_save = TweetRepository.add_tweet(
-            tweets, request.json['topic'])
+        tweets_save = TweetService.save_tweets(request.json['topic'],request.json['config'])
         return jsonify(tweets_save)  ##graficar dede donde fue tweeteado
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
