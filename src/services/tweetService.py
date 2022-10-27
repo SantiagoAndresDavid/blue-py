@@ -1,3 +1,4 @@
+import re
 from flask import Blueprint, jsonify, request
 from importlib_metadata import NullFinder
 from data.tweetRepository import TweetRepository
@@ -16,4 +17,10 @@ class TweetService():
             return e
 
     @classmethod
-    def get_tweet_list(self,topic):       
+    def get_tweet_list(self,topic):
+        try:
+            tweets = TweetRepository.get_tweet_list(topic)
+            tweets_clean_text = TweetRepository.clean_text(tweets)
+            return tweets_clean_text
+        except Exception as e:
+            return e           

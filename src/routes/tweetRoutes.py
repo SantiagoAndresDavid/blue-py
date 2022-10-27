@@ -35,9 +35,8 @@ def save_tweets():
 @main.route('/search-tweets', methods=['GET'])
 def get_tweets_database():
     try:
-        tweets = TweetRepository.get_tweet_list(request.json['topic'])
-        tweets_clean_text = TweetRepository.clean_text(tweets)
-        return jsonify(tweets_clean_text)  # retornar la lista.
+        tweets = TweetService.get_tweet_list(request.json['topic'])
+        return jsonify(tweets)  # retornar la lista.
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
 
