@@ -10,7 +10,7 @@ from utils.tweetpy import api
 
 # models
 from data import tweetRepository
-
+from sqlalchemy import create_engine
 main = Blueprint('tweet_Routes_blueprint', __name__)
 
 
