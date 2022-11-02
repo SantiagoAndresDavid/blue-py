@@ -42,25 +42,20 @@ def get_tweets_database():
 
 
 # search follower list
-@main.route('/search-follower-list', methods=['POST'])
+@main.route('/search-follower-list', methods=['GET'])
 def get_follower_list():
     try:
-        user = api.get_user(screen_name=request.json['user'])
-        for follower in user.followers():
-            print(follower.name)
-        return jsonify({'message': 'se encontro'})  # retornar la base de datos
+        follwers = TweetService.get_follower_list(request.json['user'])
+        return jsonify({'message': str(follwers)})  # retornar la base de datos
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
 
 
 # search list of followers
-@main.route('/search-list-of-following', methods=['POST'])
+@main.route('/search-following-list', methods=['GET'])
 def get_following_list():
     try:
-        user = api.get_user(screen_name=request.json['user'])
-        for follower in user.friends:
-            print(follower.name)
-
-        return jsonify({'message': 'se encontro'})
+        following = TweetService.get_following_list(request.json['user'])
+        return jsonify({'message': str(following)})  
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500

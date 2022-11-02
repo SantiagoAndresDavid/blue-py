@@ -24,3 +24,26 @@ class TweetService():
             return tweets_clean_text
         except Exception as e:
             return e           
+
+    @classmethod
+    def get_follower_list(self,username):
+        try:
+            followers = []
+            followers_user = api.get_followers(screen_name=username)
+            for follower in followers_user:
+                followers.append(follower.name)
+            return followers    
+        except Exception as e:
+            return e
+
+    @classmethod
+    def get_following_list(self,username):
+        try:
+            following = []
+            following_user = api.get_friends(screen_name=username)
+            for friend in following_user:
+                following.append(friend.name)
+            return following    
+        except Exception as e:
+            return e    
+            

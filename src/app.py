@@ -1,9 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+
+from routes import tweetRoutes
 from settings import DATABASE_CONNECTION_URI
 from utils.db import db
-from routes import tweetRoutes
-from flask_migrate import Migrate
+
 app = Flask(__name__)
 
 
