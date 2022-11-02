@@ -41,6 +41,17 @@ def get_tweets_database():
         return jsonify({'message': str(ex)}), 500
 
 
+@main.route('/analytics_sentiments', methods=['GET'])
+def analytics_sentiments():
+    try:
+        tweets = TweetService.get_tweet_list(request.json['topic'])
+        tweets_clean_text = TweetRepository.clean_text(tweets)
+        polarity =TweetService.analytics_sentiment(tweets_clean_text)
+        return jsonify({'message': str(polarity)})
+    except Exception as ex:
+        jsonify({'message': str(ex)}), 500
+
+
 # search follower list
 @main.route('/search-follower-list', methods=['GET'])
 def get_follower_list():

@@ -24,8 +24,9 @@ class TweetRepository():
     def clean_text(self, tweets):
         try:
             for tweet in tweets:
-                tweet['text'] = re.sub(r'@[A-Za-z09]+', '', tweet['text'])
+                tweet['text'] = re.sub(r'^RT[\s]+', '', tweet['text'])
                 tweet['text'] = re.sub(r'#', '', tweet['text'])
+                tweet['text'] = re.sub(r'@[A-Za-z0-9]+', '', tweet['text'])
                 tweet['text'] = re.sub(r'''(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))''', " ",  tweet['text'])
             return tweets
         except Exception as e:

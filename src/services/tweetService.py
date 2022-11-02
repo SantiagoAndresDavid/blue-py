@@ -1,6 +1,6 @@
 import re
 from flask import Blueprint, jsonify, request
-from importlib_metadata import NullFinder
+from textblob import TextBlob
 from data.tweetRepository import TweetRepository
 from utils.db import db
 from utils.tweetpy import api
@@ -20,10 +20,17 @@ class TweetService():
     def get_tweet_list(self,topic):
         try:
             tweets = TweetRepository.get_tweet_list(topic)
+            return tweets
+        except Exception as e:
+            return e   
+
+    @classmethod
+    def clean_tweet_list(self,tweets):
+        try:
             tweets_clean_text = TweetRepository.clean_text(tweets)
             return tweets_clean_text
         except Exception as e:
-            return e           
+            return e                   
 
     @classmethod
     def get_follower_list(self,username):
@@ -46,4 +53,24 @@ class TweetService():
             return following    
         except Exception as e:
             return e    
-            
+
+    @classmethod
+    def analytics_sentiment(self,clean_tweets):
+        try:
+            polarity = []
+            for tweet in clean_tweets:
+                text = TextBlob(tweet['text'])
+                sentiment = text.sentiment.polarity
+                polarity.append(TweetService.x_range(sentiment))
+            return polarity    
+        except Exception as e:
+            return e    
+
+    @staticmethod
+    def x_range(x):
+        if x > 0:
+            return 1
+        elif x == 0:
+            return 0
+        else:
+            return -1 
