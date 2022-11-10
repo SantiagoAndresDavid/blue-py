@@ -8,10 +8,10 @@ from utils.tweetpy import api
 
 class TweetService():
     @classmethod
-    def save_tweets(self, topic, config):
+    def save_tweets(self, topic):
         try:
             tweets = api.search_tweets(
-                q=topic + " " + config, count=100, lang="en", tweet_mode='extended')  # search_tweets
+                q=topic + " " + "-is_retweet -RT", count=100, lang="en", tweet_mode='extended')  # search_tweets
             tweets_save = TweetRepository.add_tweet(
                 tweets, request.json['topic'])
             return tweets_save
@@ -24,6 +24,8 @@ class TweetService():
     def get_tweet_list(self, topic):
         try:
             tweets = TweetRepository.get_tweet_list(topic)
+            if(len(tweets) <= 0):
+                tweets = TweetService.save_tweets(topic)
             return tweets
         except Exception as e:
             return e
@@ -72,9 +74,9 @@ class TweetService():
 
     @staticmethod
     def calculate_polarity(polarity):
-        good = 0 
+        good = 0
         bad = 0
-        neutral = 0 
+        neutral = 0
         for i in polarity:
             if(i > 0):
                 good = good + 1

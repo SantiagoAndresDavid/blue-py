@@ -30,7 +30,7 @@ def save_tweets():
         # search for tweets using tweepy returning a list of tweets receiving a topic
         # and saving it to the database
         tweets_save = TweetService.save_tweets(
-            request.json['topic'], request.json['config'])
+            request.json['topic'])
         return jsonify(tweets_save)
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
