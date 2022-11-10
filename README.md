@@ -67,19 +67,19 @@ python3 -m venv
 - Windows
 
 ```sh
-virtualenv myenv
+virtualenv venv
 ```
 Activate a virtual environment
 - Ubuntu/MacOS
 
 ```sh
-source env/bin/activate
+source venv/bin/activate
 ```
 
 - Windows
 
 ```sh
-.\env\Scripts\activate
+.\venv\Scripts\activate
 ```
 
 Installing packages
@@ -93,7 +93,7 @@ python3 -m pip install requests
 - Windows
 
 ```sh
-py -m pip install requests
+pip install -r requeriments.txt
 ```
 
 <!--Ejecución de la app-->
