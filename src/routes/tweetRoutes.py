@@ -22,8 +22,6 @@ def get_main():
         return jsonify({'message': str(ex)}), 500
 
 
-
-
 @main.route('/save-tweets', methods=['POST'])
 def save_tweets():
     try:
@@ -39,14 +37,14 @@ def save_tweets():
 @main.route('/search-tweets', methods=['GET'])
 def get_tweets_database():
     try:
-        # search tweets for database receiving a topic 
+        # search tweets for database receiving a topic
         tweets = TweetService.get_tweet_list(request.json['topic'])
-        return jsonify(tweets)  
+        return jsonify(tweets)
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
 
 
-@main.route('/analytics_sentiments', methods=['GET'])
+@main.route('/analytics-sentiments', methods=['GET'])
 def analytics_sentiments():
     try:
         # search tweets for database receiving a topic
@@ -59,18 +57,23 @@ def analytics_sentiments():
     except Exception as ex:
         jsonify({'message': str(ex)}), 500
 
-
+@main.route("/analytics-sources", methods=["GET"])
+def analytics_sources():
+    try:
+        sources = TweetService.get_source_list(request.json['topic'])
+        return jsonify({'message': str(sources)})
+    except Exception as ex:  
+        jsonify({'message': str(ex)}), 500
 
 @main.route('/search-follower-list', methods=['GET'])
 def get_follower_list():
     try:
-        # search for follower using tweepy returning a list of tweets receiving a 
+        # search for follower using tweepy returning a list of tweets receiving a
         # user name and saving it to the database
         follwers = TweetService.get_follower_list(request.json['user'])
-        return jsonify({'message': str(follwers)})  
+        return jsonify({'message': str(follwers)})
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
-
 
 
 @main.route('/search-following-list', methods=['GET'])

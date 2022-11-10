@@ -31,6 +31,15 @@ class TweetService():
             return e
 
     @classmethod
+    def get_source_list(self, topic):
+        try:
+            sources = TweetRepository.get_source_list(topic)
+            repeated =  TweetService.count_sources(sources)
+            return repeated
+        except Exception as e:
+            return e
+
+    @classmethod
     def clean_tweet_list(self, tweets):
         try:
             tweets_clean_text = TweetRepository.clean_text(tweets)
@@ -94,3 +103,13 @@ class TweetService():
             return 0
         else:
             return -1
+
+    @staticmethod
+    def count_sources(sources):
+        result = {}
+        for source in sources:
+            if source not in result:
+                result[source] = 0
+            result[source] += 1 
+        return result  
+

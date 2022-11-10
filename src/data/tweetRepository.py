@@ -42,6 +42,16 @@ class TweetRepository():
         except Exception as e:
             return e
 
+    @classmethod
+    def get_source_list(self, topic):
+        try:
+            sources = []
+            for tweet in db.session.query(Tweet.source).filter(Tweet.topic == topic):
+                sources.append(tweet.source)
+            return sources
+        except Exception as e:
+            return e       
+
     @staticmethod
     def to_JSON(tweet):
         return {
