@@ -54,8 +54,8 @@ def analytics_sentiments():
         # clean text using regular expressions
         tweets_clean_text = TweetRepository.clean_text(tweets)
         # returns the sentiment using the sentiment method of the textblob library
-        polarity = TweetService.analytics_sentiment(tweets_clean_text)
-        return jsonify({'message': str(polarity)})
+        (good, bad, neutral) = TweetService.analytics_sentiment(tweets_clean_text)
+        return jsonify({'good': good, 'bad': bad, 'neutral': neutral})
     except Exception as ex:
         jsonify({'message': str(ex)}), 500
 
