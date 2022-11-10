@@ -16,6 +16,8 @@ class TweetService():
         except Exception as e:
             return e
 
+
+    #get tweet list and send to repository
     @classmethod
     def get_tweet_list(self,topic):
         try:
