@@ -1,11 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_cors import CORS, cross_origin
 from routes import tweetRoutes
 from settings import DATABASE_CONNECTION_URI
 from utils.db import db
 
 app = Flask(__name__)
+
 
 
 def page_not_found(error):
@@ -16,6 +17,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_CONNECTION_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.register_error_handler(404, page_not_found)
 app.register_blueprint(tweetRoutes.main, url_prefix='/BluePy')
+CORS(app, resources={r"/BluePy/*": {"origins": "http://localhost"}})
 SQLAlchemy(app)
 
 
