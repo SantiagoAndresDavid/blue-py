@@ -1,16 +1,10 @@
 
 from flask import Blueprint, jsonify, request
-from importlib_metadata import NullFinder
 from data.tweetRepository import TweetRepository
-from models.tweet import Tweet
+from flask_cors import cross_origin
 from services.tweetService import TweetService
-from utils.db import db
-from utils.tweetpy import api
 
 
-# models
-from data import tweetRepository
-from sqlalchemy import create_engine
 main = Blueprint('tweet_Routes_blueprint', __name__)
 
 
@@ -33,7 +27,7 @@ def save_tweets():
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
 
-
+@cross_origin
 @main.route('/search-tweets', methods=['GET'])
 def get_tweets_database():
     try:
