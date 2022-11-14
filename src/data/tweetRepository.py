@@ -1,5 +1,3 @@
-from requests import session
-import tweepy
 from models.tweet import Tweet
 from utils.db import db
 import re

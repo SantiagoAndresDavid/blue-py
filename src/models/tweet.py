@@ -1,6 +1,3 @@
-
-from encodings import utf_8
-from numpy import character
 from utils.db import db
 
 

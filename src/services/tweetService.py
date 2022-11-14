@@ -13,7 +13,7 @@ class TweetService():
             tweets = api.search_tweets(
                 q=topic + " " + "-is_retweet -RT", count=100, lang="en", tweet_mode='extended')  # search_tweets
             tweets_save = TweetRepository.add_tweet(
-                tweets, request.json['topic'])
+                tweets,topic)
             return tweets_save
         except Exception as e:
             return e

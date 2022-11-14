@@ -32,7 +32,7 @@ def save_tweets():
 def get_tweets_database():
     try:
         # search tweets for database receiving a topic
-        tweets = TweetService.get_tweet_list(request.json['topic'])
+        tweets = TweetService.get_tweet_list(request.args.get('topic'))
         return jsonify(tweets)
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
@@ -42,7 +42,7 @@ def get_tweets_database():
 def analytics_sentiments():
     try:
         # search tweets for database receiving a topic
-        tweets = TweetService.get_tweet_list(request.json['topic'])
+        tweets = TweetService.get_tweet_list(request.args.get('topic'))
         # clean text using regular expressions
         tweets_clean_text = TweetRepository.clean_text(tweets)
         # returns the sentiment using the sentiment method of the textblob library
@@ -54,7 +54,7 @@ def analytics_sentiments():
 @main.route("/analytics-sources", methods=["GET"])
 def analytics_sources():
     try:
-        sources = TweetService.get_source_list(request.json['topic'])
+        sources = TweetService.get_source_list(request.args.get('topic'))
         return jsonify({'message': str(sources)})
     except Exception as ex:  
         jsonify({'message': str(ex)}), 500
@@ -64,7 +64,7 @@ def get_follower_list():
     try:
         # search for follower using tweepy returning a list of tweets receiving a
         # user name and saving it to the database
-        follwers = TweetService.get_follower_list(request.json['user'])
+        follwers = TweetService.get_follower_list(request.args.get('topic'))
         return jsonify({'message': str(follwers)})
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
@@ -75,7 +75,7 @@ def get_following_list():
     try:
         # search for following using tweepy returning a list of tweets receiving a
         # user name and saving it to the database
-        following = TweetService.get_following_list(request.json['user'])
+        following = TweetService.get_following_list(request.args.get('topic'))
         return jsonify({'message': str(following)})
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
