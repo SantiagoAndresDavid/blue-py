@@ -27,6 +27,7 @@ def save_tweets():
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
 
+
 @cross_origin
 @main.route('/search-tweets', methods=['GET'])
 def get_tweets_database():
@@ -51,13 +52,15 @@ def analytics_sentiments():
     except Exception as ex:
         jsonify({'message': str(ex)}), 500
 
+
 @main.route("/analytics-sources", methods=["GET"])
 def analytics_sources():
     try:
         sources = TweetService.get_source_list(request.args.get('topic'))
-        return jsonify({'message': str(sources)})
-    except Exception as ex:  
+        return jsonify(sources)
+    except Exception as ex:
         jsonify({'message': str(ex)}), 500
+
 
 @main.route('/search-follower-list', methods=['GET'])
 def get_follower_list():
