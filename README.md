@@ -1,104 +1,47 @@
-# blue-py
+# Proyecto React con Backend Python
 
-| IDENTIFICACIÓN | |
-| :- | :- |
-| subject | simulation and models |
-| Professor | Adith Bismarck Pérez Orozco  |
-| Contributors | Santiago Andres David, Ana Sofia Patiño |
+Este proyecto es una aplicación React que se conecta a un backend Python. Para facilitar la configuración y la construcción de la imagen Docker, se utilizan variables de entorno que se deben establecer correctamente.
 
-Project focussed on twitter data management. Blue-py is a college project for the simulation statistic using tweets information from the tweetpy library
+## Variables de Entorno
 
-## information for the professor 
-[documents](https://drive.google.com/drive/folders/1xU7A-c-VGjO3e8Xif1cFoIpYiZ_ZvUVR?usp=sharing)
+El proyecto utiliza las siguientes variables de entorno:
 
-<!--Por qué es el proyecto-->
-## Why?
+### Variables en el archivo .env de React
 
-This project is to learn threads and simulations
+Estas variables son necesarias para la configuración del frontend en React. Deben estar definidas en el archivo .env dentro de la raíz del proyecto.
 
-<!--Instalación del entorno de dev-->
-## Setup dev-Embiroment
+- *REACT_APP_HOST_PYTHON_BACKEND*: La URL o dirección IP del backend Python.
+  - Ejemplo: localhost
 
-[![Python](https://img.shields.io/static/v1?label=Python&message=3.8.10&style=for-the-badge&logo=python&labelColor=white&color=blue)](https://www.python.org/downloads/release/python-3810/)
-[![Mysql](https://img.shields.io/static/v1?label=Mysql&message=8.0.30&style=for-the-badge&logo=mysql&labelColor=white&color=blue)](https://downloads.mysql.com/archives/community/)
----
+- *REACT_APP_PORT_PYTHON_BACKEND*: El puerto en el que el backend Python está escuchando.
+  - Ejemplo: 22222
 
-Install pip
+#### Ejemplo de archivo .env:
 
-Download the script, from https://bootstrap.pypa.io/get-pip.py.
+env
+REACT_APP_HOST_PYTHON_BACKEND=localhost
+REACT_APP_PORT_PYTHON_BACKEND=22222
 
-Open a terminal/command prompt, cd to the folder containing the get-pip.py file and run:
+## instalacion
 
-- Ubuntu/MacOS
+### primer paso 
+posicionate en el proyecto he instala las dependencias 
+sh
+npm install 
 
-```sh
-python3 get-pip.py
-```
+### segundo paso 
+construye la imagen de la siguiente forma 
+sh
+docker build \
+  --build-arg REACT_APP_HOST_PYTHON_BACKEND=localhost \
+  --build-arg REACT_APP_PORT_PYTHON_BACKEND=1234 \
+  --build-arg REACT_APP_HOST_NODE_BACKEND=localhost \
+  --build-arg REACT_APP_PORT_NODE_BACKEND=7777 \
+  -t react-app .
 
-- Windows
+### tercer paso 
+construye la imagen de la siguiente forma:
+sh
+docker run -p 80:80 react-app
 
-```sh
-py get-pip.py
-```
-
----
-Install venv
-
-- Ubuntu/MacOS
-
-```sh
-python3 -m pip install --user virtualenv
-```
-
-- Windows
-
-```sh
-py -m pip install --user virtualenv
-```
-Create a virtual environment
-
-
-- Ubuntu/MacOS
-
-```sh
-python3 -m venv
-```
-
-- Windows
-
-```sh
-virtualenv venv
-```
-Activate a virtual environment
-- Ubuntu/MacOS
-
-```sh
-source venv/bin/activate
-```
-
-- Windows
-
-```sh
-.\venv\Scripts\activate
-```
-
-Installing packages
-
-- Ubuntu/MacOS
-
-```sh
-python3 -m pip install requests
-```
-
-- Windows
-
-```sh
-pip install -r requeriments.txt
-```
-
-<!--Ejecución de la app-->
-
-## Run app 
----
-activate virtal enviorment and execute index.py 
-<!--Ejecución de la app con docker-->
+(para cambiar el puerto se puede sustituir 3000:80)
